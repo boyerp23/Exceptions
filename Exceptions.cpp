@@ -11,52 +11,81 @@ float myDivide(float num, float denum)
 
 using namespace std;
 
-int main()
+int divSolution()
 {
     int dbz_err = 0;
     int num_z_wrn = 1;
     float numm;
     float denumm;
     char chr_in;
-
+//Label
 START:
-    try 
+    try
     {
-        cout << "Hello, this is my divider program! It takes in two numbers"
-            "and divides them" << endl;
+        //ask for user input
         cout << "Please enter a number for your numerator" << endl;
+        //gets user input
         cin >> numm;
-        if (numm == 0) 
+        //if user input is 0 'catch (int e)' will display and ask user to try agian or terminate.
+        if (numm == 0)
         {
             throw num_z_wrn;
         }
         cout << "Please enter a number for your denominator" << endl;
         cin >> denumm;
-    }
-    catch(int e)
+    }//where try ends
+    //Displays if user inputs 0 as the numerator
+    catch (int e)
     {
-        cout << "Numerator entered as Zero, answer will always be Zero. Program terminating.." << endl;
-        return -1;
-    }
-    try 
+        cout << "Numerator entered as Zero, answer will always be Zero. Try again.." << endl;
+        return 0;
+    }//where catch ends
+    //If user inputs 0 as the denominator the 'catch int myE' will output warning and ask user to try again or terminate program
+    try
     {
         if (denumm == 0)
         {
             throw dbz_err;
-        }
-    }
+        }//where if ends
+    }//where try ends
+    //Displays is the user inputs 0 as the Denominator.
     catch (int myE)
     {
-        if (myE==dbz_err)
+        if (myE == dbz_err)
         {
             cout << "Your entered 0 as your denominator casting to smole value" << endl;
             denumm = 0.00000001;
-            
-        }
-    }
-    cout << "your answer is " << myDivide(numm, denumm);
 
-}
+        }//where if ends
+    }//where catch ends
+    //Outputs the answer
+    cout << "your answer is " << myDivide(numm, denumm);
+}//where divSolution ends
+
+int main()
+{
+    //intro
+    cout << "Hello, this is my divider program! It takes in two numbers"
+        "and divides them" << endl;
+    //user input required for continuation
+    char ui;
+    while (true)
+    {
+        //protoyped function for loop
+        divSolution();
+        //asks user for their input to continue or quit.
+        cout << "\ndo you want to try again? Enter 'y' for yes." << endl;
+        //gets user input
+        cin >> ui;
+        //checks if true - if true program continues - if not program terminates
+        if (ui != 'y')
+        {
+            //terminates program ending the loop
+            break;
+        }//where if ends
+
+    }//where while ends
+}//where main ends
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
